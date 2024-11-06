@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<form action = "/" method = "POST">
+    <input type ='number' name = 'code' placeholder="codigo do produto">
+    <input type = 'text'  name = 'name' placeholder="nome do produto">
+    <input type = 'number'  name = 'stock' placeholder="disponibilidade">
+    <input type = 'number'  name = 'value' placeholder="valor produto">
+    
+    <button type="submit">Cadastrar</button>
+
+</form>
+
+{% for product in data %}
+        <br>
+        {{product.0}}
+        {{product.1}}
+
+        <form action="/delete/products/{{product.0}}" method="POST">
+            <button type="submit">Deletar</button>
+        </form>
+        <a href="/update/product/{{product.0}}">Atualizar</a>
+        {% else %}
+        NÃO TEM PRODUTOS CADASTRADOS
+
+    {% endfor %}
+{% endblock %}
